@@ -1,4 +1,5 @@
 import argparse
+from hexlet_code.gendiff import generate_diff
 
 
 def main():
@@ -11,7 +12,8 @@ def main():
 
     args = parser.parse_args()
 
-    print(f"Comparing '{args.first_file}' and '{args.second_file}' with output format: '{args.format}'")
+    diff = generate_diff(args.first_file, args.second_file)
+    print(diff)
 
 
 if __name__ == "__main__":
