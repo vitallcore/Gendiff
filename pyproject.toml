@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "a tool for comparing configuration files"
+authors = ["vitallcore <vitaslipknot@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "hexlet_code" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+flake8 = "^7.1.1"
+argparse = "^1.4.0"
+
+[tool.poetry.scripts]
+gendiff = "hexlet_code.scripts.gendiff:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

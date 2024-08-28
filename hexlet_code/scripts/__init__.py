@@ -1,0 +1,1 @@
+# hexlet_code/scripts/__init__.py
