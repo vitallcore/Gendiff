@@ -12,20 +12,19 @@ def generate_diff(file_path1, file_path2):
         data1 = json.load(file1)
         data2 = json.load(file2)
 
-    all_keys = sorted(set(data1.keys()) | set(data2.keys()))
-
     diff = []
 
-    for key in all_keys:
-        if key in data1 and key in data2:
-            if data1[key] == data2[key]:
-                diff.append(f"    {key}: {bool_to_str(data1[key])}")
-            else:
-                diff.append(f"  - {key}: {bool_to_str(data1[key])}")
-                diff.append(f"  + {key}: {bool_to_str(data2[key])}")
-        elif key in data1:
-            diff.append(f"  - {key}: {bool_to_str(data1[key])}")
-        else:
-            diff.append(f"  + {key}: {bool_to_str(data2[key])}")
+    all_keys = sorted(set(data1.keys()).union(set(data2.keys())))
 
-    return "{\n" + "\n".join(diff) + "\n}"
+    for key in all_keys:
+        if key not in data2:
+            diff.append(f"  - {key}: {data1[key]}")
+        elif key not in data1:
+            diff.append(f"  + {key}: {data2[key]}")
+        elif data1[key] != data2[key]:
+            diff.append(f"  - {key}: {data1[key]}")
+            diff.append(f"  + {key}: {data2[key]}")
+        else:
+            diff.append(f"    {key}: {data1[key]}")
+
+    return f"{{\n{'\n'.join(diff)}\n}}" if diff else "{}"
