@@ -10,7 +10,7 @@ This project was made to help to find out the difference between two files and m
 
 Use CLI and type this command: "gendiff -h"
 
-## Here's the example of comparing two files:
+## Here's the example of comparing two JSON files:
 [![asciicast](https://asciinema.org/a/673897.svg)](https://asciinema.org/a/673897)
 ---
 ### Installation requirements and instruction.
