@@ -12,11 +12,13 @@ packages = [
 python = "^3.12"
 pytest = "^8.3.2"
 pytest-cov = "^5.0.0"
-flake8 = "^7.1.1"
 argparse = "^1.4.0"
 
 [tool.poetry.scripts]
 gendiff = "hexlet_code.scripts.gendiff:main"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.1"
 
 [build-system]
 requires = ["poetry-core"]
