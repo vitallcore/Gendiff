@@ -30,12 +30,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          make install
 
-      - name: Lint with flake8
+      - name: Run linter and pytest
         run: |
-          poetry run flake8
+          make check
 
-      - name: Run tests
-        run: |
-          poetry run pytest --cov=hexlet_code
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        if: github.ref_name == 'main'
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true

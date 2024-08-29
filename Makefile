@@ -1,9 +1,6 @@
 install:
 	poetry install
 
-gendiff:
-	poetry run gendiff
-
 build:
 	poetry build
 
@@ -20,8 +17,8 @@ lint:
 	poetry run flake8 hexlet_code
 
 check:
-	poetry run flake8
+	poetry run flake8 hexlet_code
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest --cov=hexlet_code --cov-report xml
+	poetry run pytest --cov=hexlet_code
