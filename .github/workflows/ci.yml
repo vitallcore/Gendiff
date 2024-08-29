@@ -35,3 +35,14 @@ jobs:
       - name: Run linter and pytest
         run: |
           make check
+
+      - name: Generate coverage report
+        run: |
+          poetry run pytest --cov=hexlet_code --cov-report=xml
+
+      - name: Upload coverage to Code Climate
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: |
+          cc-test-reporter format-coverage coverage.xml
+          cc-test-reporter after-build --coverage-input-type coverage.py --exit-code ${{ job.status }}
