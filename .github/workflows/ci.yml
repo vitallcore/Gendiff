@@ -36,27 +36,11 @@ jobs:
         run: |
           make check
 
-      - name: Generate coverage report
-        run: |
-          poetry run pytest --cov=hexlet_code --cov-report=xml
-
-      - name: Check for coverage.xml
-        run: |
-          ls -la coverage.xml
-
-      - name: Install Code Climate Reporter
-        run: |
-          gem install cc-test-reporter
-
-      - name: Print CC_TEST_REPORTER_ID
-        run: |
-          echo "CC_TEST_REPORTER_ID is set"
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v5.0.0
+        if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
-      - name: Upload coverage to Code Climate
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        run: |
-          cc-test-reporter format-coverage coverage.xml
-          cc-test-reporter after-build --coverage-input-type coverage.py --exit-code ${{ job.status }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
