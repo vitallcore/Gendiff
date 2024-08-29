@@ -21,4 +21,4 @@ check:
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest --cov=hexlet_code
+	poetry run pytest --cov=hexlet_code --cov-report=xml
