@@ -23,11 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          make install
 
       - name: Lint with flake8
         run: |
-          poetry run flake8
+          make lint
 
       - name: Run tests
         run: |
