@@ -28,7 +28,8 @@ How to install the project:
 4. Install the built package using pip.
 5. Use the project.
 
-Important note;
+Important note:
+
 If you want to check the project's code you always can use "make lint" command to use a linter built in a project.
 ---
 ### Links
