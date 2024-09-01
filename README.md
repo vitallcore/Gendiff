@@ -9,9 +9,15 @@ This project was made to help to find out the difference between two files and m
 ## How to show help message:
 
 Use CLI and type this command: "gendiff -h"
+[![asciicast](https://asciinema.org/a/674356.svg)](https://asciinema.org/a/674356)
 
-## Here's the example of comparing two JSON files:
-[![asciicast](https://asciinema.org/a/673897.svg)](https://asciinema.org/a/673897)
+## To compare two files (JSON or YAML) use this command:
+
+gendiff filepath1.json filepath2.json
+gendiff filepath1.yml filepath2.yml
+
+## Here's the example of comparing two JSON and YAML files:
+[![asciicast](https://asciinema.org/a/674359.svg)](https://asciinema.org/a/674359)
 ---
 ### Installation requirements and instruction.
 

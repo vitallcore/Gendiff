@@ -1,4 +1,4 @@
-import json
+from hexlet_code.file_loader import load_file
 
 
 def format_value(value):
@@ -8,9 +8,8 @@ def format_value(value):
 
 
 def generate_diff(file_path1, file_path2):
-    with open(file_path1) as file1, open(file_path2) as file2:
-        data1 = json.load(file1)
-        data2 = json.load(file2)
+    data1 = load_file(file_path1)
+    data2 = load_file(file_path2)
 
     diff = []
 
