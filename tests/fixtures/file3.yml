@@ -1,4 +1,6 @@
 {
-  "key1": "value1",
-  "key2": "value3"
+  "host": "hexlet.io",
+  "timeout": 50,
+  "proxy": "123.234.53.22",
+  "follow": false
 }

@@ -1,4 +1,5 @@
 {
-  "key1": "value2",
-  "key3": "value4"
+  "timeout": 20,
+  "verbose": true,
+  "host": "hexlet.io"
 }
