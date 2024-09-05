@@ -17,7 +17,7 @@ gendiff filepath1.json filepath2.json
 gendiff filepath1.yml filepath2.yml
 
 ## Here's the example of comparing two JSON and YAML files:
-[![asciicast](https://asciinema.org/a/674359.svg)](https://asciinema.org/a/674359)
+[![asciicast](https://asciinema.org/a/674836.svg)](https://asciinema.org/a/674836)
 ---
 ### Installation requirements and instruction.
 
