@@ -14,6 +14,7 @@ Use CLI and type this command: "gendiff -h"
 ## To compare two files (JSON or YAML) use this command:
 
 gendiff filepath1.json filepath2.json
+
 gendiff filepath1.yml filepath2.yml
 
 ## To use built in formatters use this command:
@@ -21,7 +22,9 @@ gendiff filepath1.yml filepath2.yml
 -f/--format - the flag which allows to choose any formatter
 
 gendiff -f stylish filepath1 filepath2 - to show stylish ouput
+
 gendiff -f plain filepath1 filepath2 - to show plain output
+
 gendiff -f json filepath1 filepath2 - to show json output
 
 ## Here's the example of 'stylish' comparing JSON and YAML files:
