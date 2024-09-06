@@ -23,8 +23,7 @@ def file4_path():
 
 
 def test_generate_diff_stylish(file1_path, file2_path):
-    expected = """{
-    common: {
+    expected = """    common: {
       + follow: false
         setting1: Value 1
       - setting2: 200
@@ -65,62 +64,51 @@ def test_generate_diff_stylish(file1_path, file2_path):
         }
     }
     fee: 100500
-}
 }"""
     assert generate_diff(file1_path, file2_path) == expected
 
 
 def test_generate_diff(file3_path, file4_path):
-    expected = """{
-  - follow: false
+    expected = """  - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
   - timeout: 50
   + timeout: 20
-  + verbose: true
-}"""
+  + verbose: true"""
     assert generate_diff(file3_path, file4_path) == expected
 
 
 def test_identical_files(file3_path):
-    expected = """{
-    follow: false
+    expected = """    follow: false
     host: hexlet.io
     proxy: 123.234.53.22
-    timeout: 50
-}"""
+    timeout: 50"""
     assert generate_diff(file3_path, file3_path) == expected
 
 
 def test_different_files():
     file5_path = 'tests/fixtures/file5.json'
     file6_path = 'tests/fixtures/file6.json'
-    expected = """{
-  - key1: value1
+    expected = """  - key1: value1
   + key1: value2
   - key2: value3
-  + key3: value4
-}"""
+  + key3: value4"""
     assert generate_diff(file5_path, file6_path) == expected
 
 
 def test_one_empty_file():
     file_empty_path = 'tests/fixtures/empty.json'
     file_full_path = 'tests/fixtures/file3.json'
-    expected = """{
-  + follow: false
+    expected = """  + follow: false
   + host: hexlet.io
   + proxy: 123.234.53.22
-  + timeout: 50
-}"""
+  + timeout: 50"""
     assert generate_diff(file_empty_path, file_full_path) == expected
 
 
 def test_both_empty_files():
     file_empty_path = 'tests/fixtures/empty.json'
-    expected = """{
-
-}"""
+    expected = """"""
     assert generate_diff(file_empty_path, file_empty_path) == expected
 
 
