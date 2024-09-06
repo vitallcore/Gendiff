@@ -22,7 +22,7 @@ def file4_path():
     return 'tests/fixtures/file4.yml'
 
 
-def test_generate_diff_stylish(file1_path, file2_path):
+def test_generate_dif_stylish(file1_path, file2_path):
     expected = """{
     common: {
       + follow: false
@@ -32,8 +32,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + setting3: null
       + setting4: blah blah
       + setting5: {
-        key5: value5
-      }
+    key5: value5
+}
         setting6: {
             doge: {
               - wow: 
@@ -48,8 +48,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + baz: bars
         foo: bar
       - nest: {
-        key: value
-      }
+    key: value
+}
       + nest: str
     }
   - group2: {
@@ -57,7 +57,7 @@ def test_generate_diff_stylish(file1_path, file2_path):
     deep: {
         id: 45
     }
-  }
+}
   + group3: {
     deep: {
         id: {
@@ -65,10 +65,9 @@ def test_generate_diff_stylish(file1_path, file2_path):
         }
     }
     fee: 100500
-  }
+}
 }"""
-    result = generate_diff(file1_path, file2_path)
-    assert ''.join(result.split()) == ''.join(expected.split())
+    assert generate_diff(file1_path, file2_path) == expected
 
 
 def test_generate_diff(file3_path, file4_path):

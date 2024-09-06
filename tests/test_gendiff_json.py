@@ -22,7 +22,7 @@ def file4_path():
     return 'tests/fixtures/file4.json'
 
 
-def test_generate_diff_stylish(file1_path, file2_path):
+def test_generate_dif_stylish(file1_path, file2_path):
     expected = """{
     common: {
       + follow: false
@@ -32,8 +32,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + setting3: null
       + setting4: blah blah
       + setting5: {
-        key5: value5
-      }
+    key5: value5
+}
         setting6: {
             doge: {
               - wow: 
@@ -48,8 +48,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + baz: bars
         foo: bar
       - nest: {
-        key: value
-      }
+    key: value
+}
       + nest: str
     }
   - group2: {
@@ -57,7 +57,7 @@ def test_generate_diff_stylish(file1_path, file2_path):
     deep: {
         id: 45
     }
-  }
+}
   + group3: {
     deep: {
         id: {
@@ -65,10 +65,9 @@ def test_generate_diff_stylish(file1_path, file2_path):
         }
     }
     fee: 100500
-  }
+}
 }"""
-    result = generate_diff(file1_path, file2_path)
-    assert ''.join(result.split()) == ''.join(expected.split())
+    assert generate_diff(file1_path, file2_path) == expected
 
 
 def test_generate_diff(file3_path, file4_path):
@@ -160,6 +159,7 @@ def test_both_files_empty_plain():
     expected = """"""
     assert generate_diff(file_empty_path, file_empty_path, 'plain') == expected
 
+
 def test_generate_diff_json():
     file5_path = 'tests/fixtures/file5.json'
     file6_path = 'tests/fixtures/file6.json'
@@ -179,6 +179,7 @@ def test_generate_diff_json():
     }
 }"""
     assert generate_diff(file5_path, file6_path, 'json') == expected
+
 
 def test_different_files_json():
     file1_path = 'tests/fixtures/file1.json'
@@ -227,6 +228,7 @@ def test_different_files_json():
     }
 }"""
     assert generate_diff(file1_path, file5_path, 'json') == expected
+
 
 def test_one_empy_file_json():
     file_empty_path = 'tests/fixtures/empty.json'
