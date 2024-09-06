@@ -16,8 +16,10 @@ Use CLI and type this command: "gendiff -h"
 gendiff filepath1.json filepath2.json
 gendiff filepath1.yml filepath2.yml
 
-## Here's the example of comparing two JSON and YAML files:
+## Here's the example of 'stylish' comparing JSON and YAML files:
 [![asciicast](https://asciinema.org/a/674836.svg)](https://asciinema.org/a/674836)
+## Here's the example of 'plain' comparing JSON and YAML files:
+[![asciicast](https://asciinema.org/a/674986.svg)](https://asciinema.org/a/674986)
 ---
 ### Installation requirements and instruction.
 
