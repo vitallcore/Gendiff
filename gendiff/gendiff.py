@@ -39,7 +39,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     diff = build_diff(data1, data2)
 
     if format_name == 'stylish':
-        return format_stylish(diff)
+        return f"{{\n{format_stylish(diff)}\n}}"
     elif format_name == 'plain':
         return format_plain(diff)
     elif format_name == 'json':
