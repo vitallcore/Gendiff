@@ -1,7 +1,7 @@
-from hexlet_code.file_loader import load_file
-from hexlet_code.formatters.plain import format_plain
-from hexlet_code.formatters.stylish import format_stylish
-from hexlet_code.formatters.json import format_json
+from gendiff.file_loader import load_file
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.stylish import format_stylish
+from gendiff.formatters.json import format_json
 
 
 def build_diff(data1, data2):

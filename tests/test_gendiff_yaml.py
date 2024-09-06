@@ -1,5 +1,5 @@
 import pytest
-from hexlet_code.gendiff import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 @pytest.fixture
