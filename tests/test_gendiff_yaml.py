@@ -22,7 +22,7 @@ def file4_path():
     return 'tests/fixtures/file4.yml'
 
 
-def test_generate_dif_stylish(file1_path, file2_path):
+def test_generate_diff_stylish(file1_path, file2_path):
     expected = """{
     common: {
       + follow: false
