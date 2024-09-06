@@ -159,3 +159,86 @@ def test_both_files_empty_plain():
     file_empty_path = 'tests/fixtures/empty.json'
     expected = """"""
     assert generate_diff(file_empty_path, file_empty_path, 'plain') == expected
+
+def test_generate_diff_json():
+    file5_path = 'tests/fixtures/file5.json'
+    file6_path = 'tests/fixtures/file6.json'
+    expected = """{
+    "key1": {
+        "status": "updated",
+        "value_before": "value1",
+        "value_after": "value2"
+    },
+    "key2": {
+        "status": "removed",
+        "value": "value3"
+    },
+    "key3": {
+        "status": "added",
+        "value": "value4"
+    }
+}"""
+    assert generate_diff(file5_path, file6_path, 'json') == expected
+
+def test_different_files_json():
+    file1_path = 'tests/fixtures/file1.json'
+    file5_path = 'tests/fixtures/file5.json'
+    expected = """{
+    "common": {
+        "status": "removed",
+        "value": {
+            "setting1": "Value 1",
+            "setting2": 200,
+            "setting3": true,
+            "setting6": {
+                "key": "value",
+                "doge": {
+                    "wow": ""
+                }
+            }
+        }
+    },
+    "group1": {
+        "status": "removed",
+        "value": {
+            "baz": "bas",
+            "foo": "bar",
+            "nest": {
+                "key": "value"
+            }
+        }
+    },
+    "group2": {
+        "status": "removed",
+        "value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        }
+    },
+    "key1": {
+        "status": "added",
+        "value": "value1"
+    },
+    "key2": {
+        "status": "added",
+        "value": "value3"
+    }
+}"""
+    assert generate_diff(file1_path, file5_path, 'json') == expected
+
+def test_one_empy_file_json():
+    file_empty_path = 'tests/fixtures/empty.json'
+    file5_path = 'tests/fixtures/file5.json'
+    expected = """{
+    "key1": {
+        "status": "added",
+        "value": "value1"
+    },
+    "key2": {
+        "status": "added",
+        "value": "value3"
+    }
+}"""
+    assert generate_diff(file_empty_path, file5_path, 'json') == expected

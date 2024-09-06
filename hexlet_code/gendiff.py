@@ -1,6 +1,7 @@
 from hexlet_code.file_loader import load_file
 from hexlet_code.formatters.plain import format_plain
 from hexlet_code.formatters.stylish import format_stylish
+from hexlet_code.formatters.json import format_json
 
 
 def build_diff(data1, data2):
@@ -41,5 +42,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
         return f"{{\n{format_stylish(diff)}\n}}"
     elif format_name == 'plain':
         return format_plain(diff)
+    elif format_name == 'json':
+        return format_json(diff)
     else:
         raise ValueError(f"Unknown format: {format_name}")

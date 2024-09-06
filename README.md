@@ -16,10 +16,20 @@ Use CLI and type this command: "gendiff -h"
 gendiff filepath1.json filepath2.json
 gendiff filepath1.yml filepath2.yml
 
+## To use built in formatters use this command:
+
+-f/--format - the flag which allows to choose any formatter
+
+gendiff -f stylish filepath1 filepath2 - to show stylish ouput
+gendiff -f plain filepath1 filepath2 - to show plain output
+gendiff -f json filepath1 filepath2 - to show json output
+
 ## Here's the example of 'stylish' comparing JSON and YAML files:
 [![asciicast](https://asciinema.org/a/674836.svg)](https://asciinema.org/a/674836)
 ## Here's the example of 'plain' comparing JSON and YAML files:
 [![asciicast](https://asciinema.org/a/674986.svg)](https://asciinema.org/a/674986)
+## Here's the example of formattind diff into JSON format:
+[![asciicast](https://asciinema.org/a/674993.svg)](https://asciinema.org/a/674993)
 ---
 ### Installation requirements and instruction.
 
