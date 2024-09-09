@@ -21,7 +21,28 @@ def handle_unchanged(result, key, info, indent, depth):
         result.append(format_stylish(info['children'], depth + 1))
         result.append(f"{indent}    }}")
     else:
-        result.append(f"{indent}    {key}: {format_value(info['value'], depth)}")
+        result.append(
+            f"{indent}    {key}: {format_value(info['value'], depth)}")
+
+
+def handle_added(result, key, info, indent, depth):
+    """Helper function to process added keys"""
+    result.append(
+        f"{indent}  + {key}: {format_value(info['value'], depth)}")
+
+
+def handle_removed(result, key, info, indent, depth):
+    """Helper function to process removed keys"""
+    result.append(
+        f"{indent}  - {key}: {format_value(info['value'], depth)}")
+
+
+def handle_updated(result, key, info, indent, depth):
+    """Helper function to process updated keys"""
+    result.append(
+        f"{indent}  - {key}: {format_value(info['value_before'], depth)}")
+    result.append(
+        f"{indent}  + {key}: {format_value(info['value_after'], depth)}")
 
 
 def handle_nested(result, key, info, indent, depth):
@@ -37,16 +58,15 @@ def format_stylish(diff, depth=0):
     result = []
 
     for key, info in diff.items():
-        if info['status'] == 'unchanged':
-            handle_unchanged(result, key, info, indent, depth)
-        elif info['status'] == 'nested':
-            handle_nested(result, key, info, indent, depth)
-        elif info['status'] == 'added':
-            result.append(f"{indent}  + {key}: {format_value(info['value'], depth)}")
-        elif info['status'] == 'removed':
-            result.append(f"{indent}  - {key}: {format_value(info['value'], depth)}")
-        elif info['status'] == 'updated':
-            result.append(f"{indent}  - {key}: {format_value(info['value_before'], depth)}")
-            result.append(f"{indent}  + {key}: {format_value(info['value_after'], depth)}")
+        status_handlers = {
+            'unchanged': handle_unchanged,
+            'added': handle_added,
+            'removed': handle_removed,
+            'updated': handle_updated,
+            'nested': handle_nested,
+        }
+        handler = status_handlers.get(info['status'])
+        if handler:
+            handler(result, key, info, indent, depth)
 
     return '\n'.join(result)

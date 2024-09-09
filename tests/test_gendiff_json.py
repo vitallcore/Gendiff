@@ -32,8 +32,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + setting3: null
       + setting4: blah blah
       + setting5: {
-    key5: value5
-}
+        key5: value5
+    }
         setting6: {
             doge: {
               - wow: 
@@ -48,8 +48,8 @@ def test_generate_diff_stylish(file1_path, file2_path):
       + baz: bars
         foo: bar
       - nest: {
-    key: value
-}
+        key: value
+    }
       + nest: str
     }
   - group2: {
