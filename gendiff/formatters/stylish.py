@@ -21,7 +21,14 @@ def handle_unchanged(result, key, info, indent, depth):
         result.append(format_stylish(info['children'], depth + 1))
         result.append(f"{indent}    }}")
     else:
-        result.append(f"{indent}    {key}: {format_value(info['value'])}")
+        result.append(f"{indent}    {key}: {format_value(info['value'], depth)}")
+
+
+def handle_nested(result, key, info, indent, depth):
+    """Helper function to process nested nodes (children)"""
+    result.append(f"{indent}    {key}: {{")
+    result.append(format_stylish(info['children'], depth + 1))
+    result.append(f"{indent}    }}")
 
 
 def format_stylish(diff, depth=0):
@@ -32,16 +39,14 @@ def format_stylish(diff, depth=0):
     for key, info in diff.items():
         if info['status'] == 'unchanged':
             handle_unchanged(result, key, info, indent, depth)
+        elif info['status'] == 'nested':
+            handle_nested(result, key, info, indent, depth)
         elif info['status'] == 'added':
-            result.append(f"{indent}  + {key}: {format_value(info['value'])}")
+            result.append(f"{indent}  + {key}: {format_value(info['value'], depth)}")
         elif info['status'] == 'removed':
-            result.append(f"{indent}  - {key}: {format_value(info['value'])}")
+            result.append(f"{indent}  - {key}: {format_value(info['value'], depth)}")
         elif info['status'] == 'updated':
-            result.append(
-                f"{indent}  - {key}: {format_value(info['value_before'])}"
-            )
-            result.append(
-                f"{indent}  + {key}: {format_value(info['value_after'])}"
-            )
+            result.append(f"{indent}  - {key}: {format_value(info['value_before'], depth)}")
+            result.append(f"{indent}  + {key}: {format_value(info['value_after'], depth)}")
 
     return '\n'.join(result)
