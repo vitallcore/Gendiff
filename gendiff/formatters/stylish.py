@@ -10,8 +10,7 @@ def format_value(value, depth=0):
         for k, v in value.items():
             formatted_value = format_value(v, depth + 1)
             lines.append(f"{indent}{k}: {formatted_value}")
-        closing_indent = '    ' * depth
-        return f"{{\n{'\n'.join(lines)}\n{closing_indent}}}"
+        return f"{{\n{'\n'.join(lines)}\n{'    ' * depth}}}"
     return str(value)
 
 
@@ -70,5 +69,4 @@ def format_stylish(diff, depth=0):
         if handler:
             handler(result, key, info, indent, depth)
 
-    # Ensure no extra newlines are added
     return '\n'.join(result)
