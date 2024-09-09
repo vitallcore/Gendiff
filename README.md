@@ -3,7 +3,7 @@
 <a href="https://codeclimate.com/github/vitallcore/python-project-50/maintainability"><img src="https://api.codeclimate.com/v1/badges/f0a76ea8589689b816c1/maintainability" /></a>
 <a href="https://codeclimate.com/github/vitallcore/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/f0a76ea8589689b816c1/test_coverage" /></a>
 ---
-# The Difference calculator project
+# The Gendiff project
 This project was made to help to find out the difference between two files and make this process easier and faster, enjoy!
 ---
 ## How to show help message:
