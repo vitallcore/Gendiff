@@ -9,7 +9,7 @@ def load_expected(file_name):
 
 
 @pytest.mark.parametrize(
-    "file1, file2, format, expected_file",
+    "file1, file2, formating, expected_file",
     [
         ('file3.json', 'file4.json', 'stylish', 'result_generate_diff_stylish_2.txt'),
         ('file3.json', 'file3.json', 'stylish', 'result_identical_files_stylish.txt'),
@@ -23,8 +23,8 @@ def load_expected(file_name):
         ('empty.json', 'file4.json', 'json', 'result_one_empty_file_json.txt'),
     ]
 )
-def test_generate_diff(file1, file2, format, expected_file):
+def test_generate_diff(file1, file2, formating, expected_file):
     file1_path = f'tests/fixtures/{file1}'
     file2_path = f'tests/fixtures/{file2}'
     expected = load_expected(expected_file)
-    assert generate_diff(file1_path, file2_path, format) == expected
+    assert generate_diff(file1_path, file2_path, formating) == expected
