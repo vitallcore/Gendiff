@@ -37,7 +37,5 @@ def format_plain(diff, parent=''):
         elif status == 'unchanged' and 'children' in info:
             nested_lines = format_plain(info['children'], path)
             result.append(nested_lines)
-        else:
-            raise ValueError("Invalid value")
 
     return '\n'.join(result)
