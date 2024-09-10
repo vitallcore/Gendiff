@@ -111,7 +111,7 @@ def test_identical_files(file3_path):
     assert generate_diff(file3_path, file3_path) == expected
 
 
-def test_one_empty_file(file1_path, file3_path):
+def test_one_empty_file(file3_path):
     file_empty_path = 'tests/fixtures/empty.yml'
     expected = """{
   + follow: false
@@ -153,12 +153,12 @@ Property 'group4.type' was updated. From 'bas' to 'bar'"""
     assert generate_diff(file1_path, file2_path, 'plain') == expected
 
 
-def test_identical_files_plain(file4_path, file3_path):
+def test_identical_files_plain(file4_path):
     expected = """"""
     assert generate_diff(file4_path, file4_path, 'plain') == expected
 
 
-def test_one_file_empty_plain(file1_path, file2_path):
+def test_one_file_empty_plain(file1_path):
     file_empty_path = 'tests/fixtures/empty.yml'
     expected = """Property 'common' was removed
 Property 'group1' was removed

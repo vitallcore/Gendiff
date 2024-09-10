@@ -1,0 +1,14 @@
+{
+    "host": {
+        "status": "added",
+        "value": "hexlet.io"
+    },
+    "timeout": {
+        "status": "added",
+        "value": 20
+    },
+    "verbose": {
+        "status": "added",
+        "value": true
+    }
+}
