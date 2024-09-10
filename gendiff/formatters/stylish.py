@@ -45,7 +45,7 @@ def handle_updated(result, key, info, indent, depth):
         f"{indent}  + {key}: {format_value(info['value_after'], depth)}")
 
 
-def handle_nested(result, key, info, indent, depth):
+def handle_nested_unchanged(result, key, info, indent, depth):
     """Helper function to process nested nodes (children)"""
     result.append(f"{indent}    {key}: {{")
     result.append(format_stylish(info['children'], depth + 1))
@@ -57,7 +57,7 @@ STATUS_HANDLERS = {
     'added': handle_added,
     'removed': handle_removed,
     'updated': handle_updated,
-    'nested': handle_nested,
+    'nested_unchanged': handle_nested_unchanged,
 }
 
 

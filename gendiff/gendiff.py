@@ -16,7 +16,7 @@ def build_diff(data1, data2):
             diff[key] = {'status': 'added', 'value': data2[key]}
         elif isinstance(data1[key], dict) and isinstance(data2[key], dict):
             diff[key] = {
-                'status': 'unchanged',
+                'status': 'nested_unchanged',
                 'children': build_diff(data1[key], data2[key])
             }
         elif data1[key] != data2[key]:
