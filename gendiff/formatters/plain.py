@@ -31,7 +31,7 @@ def handle_updated_plain(result, path, info):
     )
 
 
-def handle_nested_unchanged_plain(result, path, info):
+def handle_nested_plain(result, path, info):
     """Helper function to process nested unchanged keys"""
     nested_lines = format_plain(info['children'], path)
     result.append(nested_lines)
@@ -41,7 +41,7 @@ STATUS_HANDLERS_PLAIN = {
     'added': handle_added_plain,
     'removed': handle_removed_plain,
     'updated': handle_updated_plain,
-    'nested_unchanged': handle_nested_unchanged_plain,
+    'nested': handle_nested_plain,
     'unchanged': lambda *args: None
 }
 

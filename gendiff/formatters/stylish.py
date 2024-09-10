@@ -5,12 +5,11 @@ def format_value(value, depth=0):
     elif value is None:
         return 'null'
     elif isinstance(value, dict):
-        indent = '    ' * (depth + 1)
         lines = []
         for k, v in value.items():
             formatted_value = format_value(v, depth + 1)
-            lines.append(f"{indent}{k}: {formatted_value}")
-        return f"{{\n{'\n'.join(lines)}\n{'    ' * depth}}}"
+            lines.append(f"{'    ' * (depth + 2)}{k}: {formatted_value}")
+        return f"{{\n{'\n'.join(lines)}\n{'    ' * (depth + 1)}}}"
     return str(value)
 
 
@@ -27,14 +26,22 @@ def handle_unchanged(result, key, info, indent, depth):
 
 def handle_added(result, key, info, indent, depth):
     """Helper function to process added keys"""
-    result.append(
-        f"{indent}  + {key}: {format_value(info['value'], depth)}")
+    if isinstance(info['value'], dict):
+        result.append(f"{indent}  + {key}: {{")
+        lines = []
+        for k, v in info['value'].items():
+            lines.append(
+                f"{'    ' * (depth + 2)}{k}: {format_value(v, depth + 1)}")
+        result.append('\n'.join(lines))
+        result.append(f"{indent}    }}")
+    else:
+        result.append(
+            f"{indent}  + {key}: {format_value(info['value'], depth)}")
 
 
 def handle_removed(result, key, info, indent, depth):
     """Helper function to process removed keys"""
-    result.append(
-        f"{indent}  - {key}: {format_value(info['value'], depth)}")
+    result.append(f"{indent}  - {key}: {format_value(info['value'], depth)}")
 
 
 def handle_updated(result, key, info, indent, depth):
@@ -45,7 +52,7 @@ def handle_updated(result, key, info, indent, depth):
         f"{indent}  + {key}: {format_value(info['value_after'], depth)}")
 
 
-def handle_nested_unchanged(result, key, info, indent, depth):
+def handle_nested(result, key, info, indent, depth):
     """Helper function to process nested nodes (children)"""
     result.append(f"{indent}    {key}: {{")
     result.append(format_stylish(info['children'], depth + 1))
@@ -57,7 +64,7 @@ STATUS_HANDLERS = {
     'added': handle_added,
     'removed': handle_removed,
     'updated': handle_updated,
-    'nested_unchanged': handle_nested_unchanged,
+    'nested': handle_nested,
 }
 
 
@@ -71,6 +78,6 @@ def format_stylish(diff, depth=0):
         if handler:
             handler(result, key, info, indent, depth)
         else:
-            raise ValueError("Invalid value")
+            raise ValueError("Invalid status in diff")
 
     return '\n'.join(result)
