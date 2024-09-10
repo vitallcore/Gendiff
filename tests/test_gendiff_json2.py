@@ -26,12 +26,5 @@ def load_expected(file_name):
 def test_generate_diff(file1, file2, format, expected_file):
     file1_path = f'tests/fixtures/{file1}'
     file2_path = f'tests/fixtures/{file2}'
-    expected = load_expected(expected_file).strip()
-    actual = generate_diff(file1_path, file2_path, format).strip()
-
-    if not expected and actual:
-        assert actual == "", f"Expected an empty result but got:\n{actual}"
-    elif expected and not actual:
-        assert expected == "", f"Expected:\n{expected}\n\nActual result is empty"
-    else:
-        assert expected == actual, f"Expected:\n{expected}\n\nActual:\n{actual}"
+    expected = load_expected(expected_file)
+    assert generate_diff(file1_path, file2_path, format) == expected
