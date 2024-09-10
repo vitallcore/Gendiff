@@ -10,9 +10,6 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pytest = "^8.3.2"
-pytest-cov = "^5.0.0"
-argparse = "^1.4.0"
 pyyaml = "^6.0.2"
 
 [tool.poetry.scripts]
@@ -20,6 +17,8 @@ gendiff = "gendiff.scripts.gendiff:main"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1.1"
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
 
 [build-system]
 requires = ["poetry-core"]

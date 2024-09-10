@@ -52,21 +52,25 @@ def handle_nested(result, key, info, indent, depth):
     result.append(f"{indent}    }}")
 
 
+STATUS_HANDLERS = {
+    'unchanged': handle_unchanged,
+    'added': handle_added,
+    'removed': handle_removed,
+    'updated': handle_updated,
+    'nested': handle_nested,
+}
+
+
 def format_stylish(diff, depth=0):
     """Formatting the output of the diff with stylish formatter"""
     indent = '    ' * depth
     result = []
 
     for key, info in diff.items():
-        status_handlers = {
-            'unchanged': handle_unchanged,
-            'added': handle_added,
-            'removed': handle_removed,
-            'updated': handle_updated,
-            'nested': handle_nested,
-        }
-        handler = status_handlers.get(info['status'])
+        handler = STATUS_HANDLERS.get(info['status'])
         if handler:
             handler(result, key, info, indent, depth)
+        else:
+            raise ValueError("Invalid value")
 
     return '\n'.join(result)
