@@ -1,6 +1,5 @@
 import pytest
 from gendiff.gendiff import generate_diff
-import difflib
 
 
 def load_expected(file_name):
