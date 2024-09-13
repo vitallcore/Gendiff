@@ -21,6 +21,8 @@ gendiff filepath1.yml filepath2.yml
 
 -f/--format - the flag which allows to choose any formatter
 
+Stylish format is used by default
+
 gendiff -f stylish filepath1 filepath2 - to show stylish ouput
 
 gendiff -f plain filepath1 filepath2 - to show plain output
@@ -28,11 +30,11 @@ gendiff -f plain filepath1 filepath2 - to show plain output
 gendiff -f json filepath1 filepath2 - to show json output
 
 ## Here's the example of 'stylish' comparing JSON and YAML files:
-[![asciicast](https://asciinema.org/a/674836.svg)](https://asciinema.org/a/674836)
+[![asciicast](https://asciinema.org/a/675879.svg)](https://asciinema.org/a/675879)
 ## Here's the example of 'plain' comparing JSON and YAML files:
-[![asciicast](https://asciinema.org/a/674986.svg)](https://asciinema.org/a/674986)
+[![asciicast](https://asciinema.org/a/675880.svg)](https://asciinema.org/a/675880)
 ## Here's the example of formattind diff into JSON format:
-[![asciicast](https://asciinema.org/a/674993.svg)](https://asciinema.org/a/674993)
+[![asciicast](https://asciinema.org/a/675881.svg)](https://asciinema.org/a/675881)
 ---
 ### Installation requirements and instruction.
 
