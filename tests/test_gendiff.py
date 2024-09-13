@@ -2,6 +2,26 @@ import pytest
 from gendiff.gendiff import generate_diff
 
 
+@pytest.fixture
+def file1_path():
+    return 'tests/fixtures/file1.json'
+
+
+@pytest.fixture
+def file2_path():
+    return 'tests/fixtures/file2.json'
+
+
+@pytest.fixture
+def file1_path_y():
+    return 'tests/fixtures/file1.yml'
+
+
+@pytest.fixture
+def file2_path_y():
+    return 'tests/fixtures/file2.yml'
+
+
 def load_expected(file_name):
     with open(f'tests/fixtures/{file_name}', 'r') as file:
         return file.read().strip()
@@ -29,7 +49,8 @@ def load_expected(file_name):
         ('file1.yml', 'empty.yml', 'plain', 'result_one_file_empty_plain.txt'),
         ('empty.yml', 'empty.yml', 'plain', 'result_both_files_empty_plain.txt'),
         ('file1.yml', 'file4.yml', 'json', 'result_different_files_json.txt'),
-        ('empty.yml', 'file4.yml', 'json', 'result_one_empty_file_json.txt')
+        ('empty.yml', 'file4.yml', 'json', 'result_one_empty_file_json.txt'),
+        #        ('file1.json', 'file2.json', 'stylish', 'result_generate_diff_stylish.txt')
     ]
 )
 def test_generate_diff(file1, file2, formatting, expected_file):
@@ -37,3 +58,137 @@ def test_generate_diff(file1, file2, formatting, expected_file):
     file2_path = f'tests/fixtures/{file2}'
     expected = load_expected(expected_file)
     assert generate_diff(file1_path, file2_path, formatting) == expected
+
+
+def test_generate_diff_stylish(file1_path, file2_path):
+    expected = """{
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: {
+            key: value
+        }
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: too much
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
+    group4: {
+      - default: null
+      + default: 
+      - foo: 0
+      + foo: null
+      - isNested: false
+      + isNested: none
+      + key: false
+        nest: {
+          - bar: 
+          + bar: 0
+          - isNested: true
+        }
+      + someKey: true
+      - type: bas
+      + type: bar
+    }
+}"""
+    assert generate_diff(file1_path, file2_path) == expected
+
+
+def test_generate_diff_stylish_y(file1_path_y, file2_path_y):
+    expected = """{
+    common: {
+      + follow: false
+        setting1: Value 1
+      - setting2: 200
+      - setting3: true
+      + setting3: {
+            key: value
+        }
+      + setting4: blah blah
+      + setting5: {
+            key5: value5
+        }
+        setting6: {
+            doge: {
+              - wow: too much
+              + wow: so much
+            }
+            key: value
+          + ops: vops
+        }
+    }
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - nest: {
+            key: value
+        }
+      + nest: str
+    }
+  - group2: {
+        abc: 12345
+        deep: {
+            id: 45
+        }
+    }
+  + group3: {
+        deep: {
+            id: {
+                number: 45
+            }
+        }
+        fee: 100500
+    }
+    group4: {
+      - default: null
+      + default: 
+      - foo: 0
+      + foo: null
+      - isNested: false
+      + isNested: none
+      + key: false
+        nest: {
+          - bar: 
+          + bar: 0
+          - isNested: true
+        }
+      + someKey: true
+      - type: bas
+      + type: bar
+    }
+}"""
+    assert generate_diff(file1_path_y, file2_path_y) == expected
