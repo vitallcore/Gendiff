@@ -2,26 +2,6 @@ import pytest
 from gendiff.gendiff import generate_diff
 
 
-@pytest.fixture
-def file1_path():
-    return 'tests/fixtures/file1.json'
-
-
-@pytest.fixture
-def file2_path():
-    return 'tests/fixtures/file2.json'
-
-
-@pytest.fixture
-def file1_path_y():
-    return 'tests/fixtures/file1.yml'
-
-
-@pytest.fixture
-def file2_path_y():
-    return 'tests/fixtures/file2.yml'
-
-
 def load_expected(file_name):
     with open(f'tests/fixtures/{file_name}', 'r') as file:
         return file.read().strip()
@@ -49,8 +29,7 @@ def load_expected(file_name):
         ('file1.yml', 'empty.yml', 'plain', 'result_one_file_empty_plain.txt'),
         ('empty.yml', 'empty.yml', 'plain', 'result_both_files_empty_plain.txt'),
         ('file1.yml', 'file4.yml', 'json', 'result_different_files_json.txt'),
-        ('empty.yml', 'file4.yml', 'json', 'result_one_empty_file_json.txt'),
-        #        ('file1.json', 'file2.json', 'stylish', 'result_generate_diff_stylish.txt')
+        ('empty.yml', 'file4.yml', 'json', 'result_one_empty_file_json.txt')
     ]
 )
 def test_generate_diff(file1, file2, formatting, expected_file):
